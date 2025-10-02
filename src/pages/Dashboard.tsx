@@ -29,6 +29,7 @@ import { useAuth } from "@/contexts/AuthContext";
 import { useToast } from "@/hooks/use-toast";
 import { Link, Navigate, useNavigate } from "react-router-dom";
 import AttendanceSummary from "@/components/AttendanceSummary";
+import DailyAttendanceSection from "@/components/DailyAttendanceSection";
 import { addStudyTimeWithRefresh } from "@/lib/storageUtils";
 import { format, addDays } from "date-fns";
 
@@ -332,7 +333,8 @@ const Dashboard = () => {
             </Card>
           </div>
           <div className="space-y-6">
-            <AttendanceSummary />
+            {/* Show new Daily Attendance for Supabase users, fallback to AttendanceSummary for mobile users */}
+            {user ? <DailyAttendanceSection /> : <AttendanceSummary />}
           </div>
         </div>
       </div>

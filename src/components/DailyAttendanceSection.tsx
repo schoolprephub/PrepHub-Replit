@@ -22,6 +22,16 @@ const DailyAttendanceSection = () => {
   const { user } = useAuth();
   const { toast } = useToast();
   
+  // Check for mobile user session (doesn't have Supabase auth)
+  const [mobileUser, setMobileUser] = useState<any>(null);
+  
+  useEffect(() => {
+    const folderUserSession = localStorage.getItem('folder_user_session');
+    if (folderUserSession) {
+      setMobileUser(JSON.parse(folderUserSession));
+    }
+  }, []);
+  
   // State management
   const [selectedDate, setSelectedDate] = useState<Date>(new Date());
   const [isMarking, setIsMarking] = useState(false);
@@ -35,7 +45,11 @@ const DailyAttendanceSection = () => {
    */
   useEffect(() => {
     const loadStats = async () => {
-      if (!user) return;
+      // Don't load if no Supabase user (mobile users use localStorage)
+      if (!user) {
+        setIsLoading(false);
+        return;
+      }
       
       setIsLoading(true);
       const stats = await getAttendanceStats(user.id);
@@ -107,6 +121,12 @@ const DailyAttendanceSection = () => {
     return "Every day counts!";
   };
 
+  // Don't render for mobile users (they use localStorage-based attendance)
+  // This component requires Supabase authentication
+  if (mobileUser && !user) {
+    return null;
+  }
+
   // Show loading state
   if (isLoading) {
     return (
@@ -119,7 +139,7 @@ const DailyAttendanceSection = () => {
     );
   }
 
-  // Don't render if no user is logged in
+  // Don't render if no Supabase user is logged in
   if (!user || !attendanceStats) {
     return null;
   }
