@@ -1,0 +1,213 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* IIT Prep App Design System - Fun, Colorful, Student-Friendly */
+
+@layer base {
+  :root {
+    /* Fun gradient backgrounds */
+    --background: 240 100% 98%;
+    --foreground: 225 15% 25%;
+
+    /* Card system with subtle elevation */
+    --card: 0 0% 100%;
+    --card-foreground: 225 15% 25%;
+
+    --popover: 0 0% 100%;
+    --popover-foreground: 225 15% 25%;
+
+    /* Vibrant primary - Purple to Blue gradient feel */
+    --primary: 250 85% 60%;
+    --primary-foreground: 0 0% 100%;
+    --primary-glow: 260 90% 70%;
+
+    /* Bright orange secondary for CTAs */
+    --secondary: 25 95% 60%;
+    --secondary-foreground: 0 0% 100%;
+
+    /* Soft muted tones */
+    --muted: 240 20% 96%;
+    --muted-foreground: 225 15% 55%;
+
+    /* Fun accent - Coral/Pink */
+    --accent: 340 85% 65%;
+    --accent-foreground: 0 0% 100%;
+
+    /* Success green */
+    --success: 145 70% 55%;
+    --success-foreground: 0 0% 100%;
+
+    --destructive: 0 85% 60%;
+    --destructive-foreground: 0 0% 100%;
+
+    /* Soft borders and inputs */
+    --border: 240 25% 90%;
+    --input: 240 25% 94%;
+    --ring: 250 85% 60%;
+
+    --radius: 1rem;
+
+    /* Fun gradients for backgrounds and elements */
+    --gradient-primary: linear-gradient(135deg, hsl(250 85% 60%), hsl(260 90% 70%));
+    --gradient-secondary: linear-gradient(135deg, hsl(25 95% 60%), hsl(35 95% 65%));
+    --gradient-accent: linear-gradient(135deg, hsl(340 85% 65%), hsl(320 80% 70%));
+    --gradient-success: linear-gradient(135deg, hsl(145 70% 55%), hsl(155 75% 60%));
+    --gradient-background: linear-gradient(180deg, hsl(240 100% 98%), hsl(250 50% 96%));
+    
+    /* Fun shadows with color */
+    --shadow-primary: 0 10px 30px -10px hsl(250 85% 60% / 0.3);
+    --shadow-secondary: 0 10px 25px -8px hsl(25 95% 60% / 0.25);
+    --shadow-accent: 0 8px 20px -6px hsl(340 85% 65% / 0.2);
+    --shadow-card: 0 4px 20px -4px hsl(225 15% 25% / 0.08);
+    
+    /* Smooth animations */
+    --transition-smooth: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    --transition-bounce: all 0.3s cubic-bezier(0.68, -0.55, 0.265, 1.55);
+
+    --sidebar-background: 0 0% 98%;
+
+    --sidebar-foreground: 240 5.3% 26.1%;
+
+    --sidebar-primary: 240 5.9% 10%;
+
+    --sidebar-primary-foreground: 0 0% 98%;
+
+    --sidebar-accent: 240 4.8% 95.9%;
+
+    --sidebar-accent-foreground: 240 5.9% 10%;
+
+    --sidebar-border: 220 13% 91%;
+
+    --sidebar-ring: 217.2 91.2% 59.8%;
+  }
+
+  .dark {
+    --background: 222.2 84% 4.9%;
+    --foreground: 210 40% 98%;
+
+    --card: 222.2 84% 4.9%;
+    --card-foreground: 210 40% 98%;
+
+    --popover: 222.2 84% 4.9%;
+    --popover-foreground: 210 40% 98%;
+
+    --primary: 210 40% 98%;
+    --primary-foreground: 222.2 47.4% 11.2%;
+
+    --secondary: 217.2 32.6% 17.5%;
+    --secondary-foreground: 210 40% 98%;
+
+    --muted: 217.2 32.6% 17.5%;
+    --muted-foreground: 215 20.2% 65.1%;
+
+    --accent: 217.2 32.6% 17.5%;
+    --accent-foreground: 210 40% 98%;
+
+    --destructive: 0 62.8% 30.6%;
+    --destructive-foreground: 210 40% 98%;
+
+    --border: 217.2 32.6% 17.5%;
+    --input: 217.2 32.6% 17.5%;
+    --ring: 212.7 26.8% 83.9%;
+    --sidebar-background: 240 5.9% 10%;
+    --sidebar-foreground: 240 4.8% 95.9%;
+    --sidebar-primary: 224.3 76.3% 48%;
+    --sidebar-primary-foreground: 0 0% 100%;
+    --sidebar-accent: 240 3.7% 15.9%;
+    --sidebar-accent-foreground: 240 4.8% 95.9%;
+    --sidebar-border: 240 3.7% 15.9%;
+    --sidebar-ring: 217.2 91.2% 59.8%;
+  }
+}
+
+@layer base {
+  * {
+    @apply border-border;
+  }
+
+  body {
+    @apply bg-background text-foreground;
+    background: var(--gradient-background);
+    font-feature-settings: "rlig" 1, "calt" 1;
+  }
+}
+
+@layer components {
+  /* Fun Button Variants */
+  .btn-hero {
+    @apply bg-primary text-primary-foreground hover:opacity-90 shadow-[var(--shadow-primary)] transform hover:scale-105 transition-all duration-300;
+    background: var(--gradient-primary);
+  }
+  
+  .btn-secondary {
+    @apply bg-secondary text-secondary-foreground hover:opacity-90 shadow-[var(--shadow-secondary)] transform hover:scale-105 transition-all duration-300;
+    background: var(--gradient-secondary);
+  }
+  
+  .btn-accent {
+    @apply bg-accent text-accent-foreground hover:opacity-90 shadow-[var(--shadow-accent)] transform hover:scale-105 transition-all duration-200;
+    background: var(--gradient-accent);
+  }
+
+  /* Fun Card Styles */
+  .card-fun {
+    @apply bg-card border border-border rounded-2xl shadow-[var(--shadow-card)] hover:shadow-[var(--shadow-primary)] transform hover:-translate-y-1 transition-all duration-300;
+  }
+  
+  .card-gradient {
+    background: var(--gradient-background);
+    @apply border border-border/50 rounded-2xl shadow-[var(--shadow-card)] backdrop-blur-sm;
+  }
+
+  /* Progress and gamification elements */
+  .progress-bar {
+    @apply h-3 rounded-full overflow-hidden;
+    background: var(--gradient-background);
+  }
+  
+  .progress-fill {
+    @apply h-full rounded-full transition-all duration-500 ease-out;
+    background: var(--gradient-success);
+  }
+
+  /* Interactive elements */
+  .hover-lift {
+    @apply transform hover:-translate-y-1 hover:shadow-lg transition-all duration-200;
+  }
+  
+  .bounce-in {
+    animation: bounceIn 0.6s cubic-bezier(0.68, -0.55, 0.265, 1.55);
+  }
+}
+
+@layer utilities {
+  .gradient-text {
+    background: var(--gradient-primary);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+  }
+  
+  .gradient-border {
+    border-image: var(--gradient-primary) 1;
+  }
+}
+
+@keyframes bounceIn {
+  0% {
+    opacity: 0;
+    transform: scale(0.3);
+  }
+  50% {
+    opacity: 1;
+    transform: scale(1.05);
+  }
+  70% {
+    transform: scale(0.9);
+  }
+  100% {
+    opacity: 1;
+    transform: scale(1);
+  }
+}
